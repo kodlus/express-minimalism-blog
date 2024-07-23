@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="swe">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/img/favicon-32x32.png">
+    <link rel="stylesheet" href="/stylesheets/output.css">
+    <script>
+      /*to prevent Firefox FOUC, this must be here*/
+      let FF_FOUC_FIX;
+    </script>
+    
+    <script defer type="text/javascript" src="/javascripts/index.js"></script>
+    <title>Kodlus' blog</title>
+  </head>
+  <body>
+    <script>0</script>
+    <!-- Header -->
+    <%- include("../partials/admin/__adminHeader.ejs") %>
+
+    <div class="light-switch" id="light-switch"></div>
+    
+    <main class="main">
+      <!-- In "body" goes the routes from server/views/[oneOfMyRoutes.ejs] -->
+      <%- body %>
+    </main>
+    
+    <!-- Todo: add footer -->
+  </body>
+</html>

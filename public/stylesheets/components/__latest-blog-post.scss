@@ -1,0 +1,58 @@
+/*===============================================
+Variables
+===============================================*/
+$borderWidth: 2px;
+
+/*===============================================
+Latest blog post
+===============================================*/
+.latest-blog-post {
+  margin-bottom: 10em;
+  position: relative;
+
+  border-top: $borderWidth solid black;
+  border-bottom: $borderWidth solid black;
+}
+
+.latest-blog-post::before {
+  content: "";
+  background: black;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  height: 50%;
+  width: $borderWidth;
+}
+
+.latest-blog-post::after {
+  content: "";
+  background: black;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  height: 50%;
+  width: $borderWidth; 
+}
+
+
+.latest-blog-post__header {
+  text-align: center;
+  padding: 1em;
+}
+
+.latest-blog-post__body {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 40px;
+  max-width: 40em;
+  padding: 1em 1.3em;
+}
+
+.latest-blog-post__img {
+  max-width: 400px;
+  border-radius: 10px;
+  margin: 0 auto;
+}

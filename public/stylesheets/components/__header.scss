@@ -1,0 +1,21 @@
+/*===============================================
+Header
+===============================================*/
+.header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  padding: 2em 1em ;
+  margin-bottom: 3em;
+}
+
+.header__logo {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.header__nav {
+  display: flex;
+  gap: 25px;  
+}

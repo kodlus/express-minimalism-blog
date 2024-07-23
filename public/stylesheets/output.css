@@ -1,0 +1,451 @@
+/*===============================================
+Setting up SCSS
+===============================================*/
+/*===============================================
+Modules
+===============================================*/
+/*===============================================
+Modules
+===============================================*/
+/*===============================================
+Reset
+===============================================*/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+button {
+  cursor: pointer;
+}
+
+/*===============================================
+Typography
+===============================================*/
+body {
+  font-family: monospace, Arial, Helvetica, sans-serif;
+}
+
+.blog-post-body,
+.form__body {
+  white-space-collapse: preserve-breaks;
+}
+
+/*===============================================
+Variables
+===============================================*/
+/*===============================================
+Latest blog post
+===============================================*/
+.latest-blog-post {
+  margin-bottom: 10em;
+  position: relative;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.latest-blog-post::before {
+  content: "";
+  background: black;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  height: 50%;
+  width: 2px;
+}
+
+.latest-blog-post::after {
+  content: "";
+  background: black;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  height: 50%;
+  width: 2px;
+}
+
+.latest-blog-post__header {
+  text-align: center;
+  padding: 1em;
+}
+
+.latest-blog-post__body {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 40px;
+  max-width: 40em;
+  padding: 1em 1.3em;
+}
+
+.latest-blog-post__img {
+  max-width: 400px;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+/*===============================================
+Header
+===============================================*/
+.header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  padding: 2em 1em;
+  margin-bottom: 3em;
+}
+
+.header__logo {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.header__nav {
+  display: flex;
+  gap: 25px;
+}
+
+/*===============================================
+Blog posts list
+===============================================*/
+.blog-posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/*===============================================
+Variables
+===============================================*/
+/*===============================================
+Blog posts preview
+===============================================*/
+.blog-post-preview {
+  padding: 0.7em;
+  margin-bottom: 5px;
+  position: relative;
+}
+
+.blog-post-preview::before {
+  content: "";
+  background: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 30px;
+}
+
+.blog-post-preview::after {
+  content: "";
+  background: black;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 2px;
+  width: 30px;
+}
+
+.blog-post-preview__header {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  text-align: center;
+  margin-bottom: 0.7em;
+}
+
+.blog-post-preview__header::before {
+  content: "";
+  background: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 2px;
+}
+
+.blog-post-preview__button {
+  display: block;
+  background: none;
+  border: none;
+  border-bottom: 1px solid black;
+  padding: 0.5em;
+  margin: 0 auto 1em auto;
+}
+
+.blog-post-preview__body {
+  height: 0px;
+  display: flex;
+  align-items: center;
+  overflow-y: hidden;
+  transition: height linear 0.3s;
+  max-width: 40em;
+  margin: 0 auto;
+}
+
+.blog-post-preview__body::before {
+  content: "";
+  background: black;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 30px;
+  width: 2px;
+}
+
+.blog-post-preview__body.expanded {
+  height: 50px;
+}
+
+/*===============================================
+Main layout
+===============================================*/
+body {
+  background-color: rgb(255, 229, 199);
+  display: grid;
+  grid-template-columns: auto minmax(10em, 40em) auto;
+  grid-template-areas: "header header header" ". content .";
+  transition: background-color 0.75s ease-out;
+}
+
+.header {
+  grid-area: header;
+  width: 100%;
+}
+
+.main {
+  grid-area: content;
+  padding: 0 1em;
+  margin-bottom: 1em;
+}
+
+/*===============================================
+About page
+===============================================*/
+.about-page__content {
+  line-height: 1.6;
+  white-space-collapse: preserve-breaks;
+}
+
+.about-page__profile-img {
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+/*===============================================
+Breadcrumb
+===============================================*/
+.breadcrumb {
+  display: block;
+}
+
+/*===============================================
+Move to own file
+===============================================*/
+.blog-post__header {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  gap: 15px;
+}
+
+/*===============================================
+Page transition animation
+borrowed from https://www.youtube.com/watch?v=zWB219zf1og
+===============================================*/
+.main {
+  animation: transitionIn 0.75s;
+}
+
+@keyframes transitionIn {
+  from {
+    opacity: 0;
+    transform: rotateX(-10deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+}
+/*===============================================
+Links
+===============================================*/
+a {
+  transition: color 250ms ease-in;
+}
+
+a:hover,
+a:focus {
+  color: rgb(241, 174, 27);
+}
+
+/*===============================================
+Light switch animation
+===============================================*/
+.light-switch.triggered {
+  animation: bounce 0.75s;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  0% {
+    transform: translateY(0);
+  }
+}
+/*===============================================
+Light switch
+===============================================*/
+.light-switch {
+  background-color: black;
+  height: 50px;
+  width: 2px;
+  border: 1px solid black;
+  overflow: visible;
+  position: absolute;
+  right: 25%;
+  top: -5px;
+  cursor: pointer;
+}
+
+.light-switch::after {
+  content: "";
+  background-color: black;
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  top: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/*===============================================
+Dark mode
+===============================================*/
+.dark-mode {
+  background-color: rgb(70, 70, 70);
+  color: white;
+}
+.dark-mode a {
+  color: rgb(255, 197, 158);
+}
+
+/*===============================================
+Form
+===============================================*/
+.form-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__label {
+  margin-bottom: 7px;
+}
+
+.form__input {
+  padding: 0.7em;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.form__body {
+  margin-bottom: 20px;
+}
+
+.form__btn {
+  width: 100%;
+  max-width: 200px;
+  padding: 1em;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+/*===============================================
+Projects
+===============================================*/
+.projects,
+.project {
+  display: flex;
+  flex-direction: column;
+}
+
+.projects {
+  gap: 25px;
+}
+
+.project {
+  gap: 7px;
+}
+
+.project a {
+  display: block;
+}
+
+/*===============================================
+Utility classes
+===============================================*/
+.link-reset {
+  text-decoration: none;
+  color: inherit;
+}
+
+.active {
+  font-weight: 700;
+  color: red;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.center {
+  text-align: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.float {
+  width: 100px;
+  height: 100px;
+  margin: 0 15px;
+  border-radius: 100%;
+  float: left;
+}
+
+.margin-bottom {
+  margin-bottom: 0.7em;
+}
+
+.max-width-unset {
+  max-width: unset;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+/*# sourceMappingURL=output.css.map */

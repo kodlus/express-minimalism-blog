@@ -1,0 +1,18 @@
+/*===============================================
+Light switch animation
+===============================================*/
+.light-switch.triggered {
+  animation: bounce 0.75s;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  0% {
+    transform: translateY(0);
+  }
+}

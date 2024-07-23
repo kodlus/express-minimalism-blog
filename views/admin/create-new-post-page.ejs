@@ -1,0 +1,51 @@
+
+<div class="column">
+  <a href="/admin/dashboard" class="margin-bottom">&lrarr; Tillbaka till dashboard:et</a> 
+  <h2 class="center margin-bottom">Skapa ett nytt inlägg</h2>
+</div>
+
+<form action="/add-post" method="POST" class="form">
+  <label for="title" class="form__label">Titel</label>
+  <input 
+    name="title"
+    type="text" 
+    placeholder="Inläggets titel" 
+    class="form__input max-width-unset"
+    required
+  >
+
+  <label for="description" class="form__label">Beskrivning</label>
+  <input 
+    name="description"
+    type="text" 
+    placeholder="Kort beskrivning om inlägget" 
+    class="form__input max-width-unset" 
+    required
+  >
+
+  <label for="tags" class="form__label">Nyckelord</label>
+  <input 
+    name="tags"
+    type="text" 
+    placeholder="Nyckelord, separeras med komma-tecken " 
+    class="form__input max-width-unset" 
+    required
+  >
+
+  <label for="body" class="form__label">Text</label>
+  <textarea 
+    name="body" 
+    cols="50" 
+    rows="10" 
+    class="form__body"
+    required
+  >
+  </textarea>
+
+  <input 
+    class="form__btn"
+    type="submit" 
+    value="Skapa" 
+    class="btn"
+  >
+</form>

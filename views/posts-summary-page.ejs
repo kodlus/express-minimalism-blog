@@ -1,0 +1,27 @@
+<h1 class="margin-bottom center">List o' inlägg</h1>
+
+<div class="blog-posts-list">
+  <% data?.forEach(post => { %> <!-- Tag start -->
+    <% if (post.slug) { %> <!-- If statement start -->
+      <div class="blog-post-preview">
+        <div class="blog-post-preview__header">
+          <h2>
+            <a href="/posts/<%= post.slug %>"><%= post.title %></a>
+          </h2>
+
+          <span> 
+            <%= post.createdAt.toLocaleDateString() %>
+          </span>
+        </div>
+        
+        <p class="blog-post-preview__body">
+          <%= post.description %>
+        </p>
+
+        <button class="blog-post-preview__button"> 
+          Visa sammanfattning
+        </button>
+      </div>
+    <% } %> <!-- If statement end -->
+  <% }); %> <!-- Tag end -->
+</div>

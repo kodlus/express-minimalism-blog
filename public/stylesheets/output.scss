@@ -1,0 +1,13 @@
+/*===============================================
+Setting up SCSS
+===============================================*/
+// PS F:\Programmering\Webdev\Portfolio\job_hunt_blog\public\css>  npx sass --watch output.scss:output.css
+
+// https://dev.to/topefasasi/getting-started-with-sass-setting-up-your-development-environment-36kp
+
+/*===============================================
+Modules
+===============================================*/
+@use "index.scss"
+
+/*# sourceMappingURL=output.scss.map */

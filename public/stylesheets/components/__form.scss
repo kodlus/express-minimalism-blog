@@ -1,0 +1,37 @@
+/*===============================================
+Form
+===============================================*/
+.form-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__label {
+  margin-bottom: 7px;
+}
+
+.form__input {
+  padding: 0.7em;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.form__body {
+  margin-bottom: 20px;
+}
+
+.form__btn {
+  width: 100%;
+  max-width: 200px;
+  padding: 1em;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+

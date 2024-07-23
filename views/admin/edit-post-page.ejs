@@ -1,0 +1,67 @@
+<div class="column">
+  <a href="/admin/dashboard" class="margin-bottom">&lrarr; Tillbaka till dashboard:et</a>  
+  <h2 class="center margin-bottom">Uppdatera inlägget</h2>
+</div>
+
+<form 
+  action="/edit-post/<%= data?.slug %>?_method=PUT" 
+  method="POST" 
+  class="form"
+>
+  <label for="title" class="form__label">Titel</label>
+  <input 
+    name="title"
+    type="text" 
+    value="<%= data?.title %>"
+    class="form__input max-width-unset" 
+    required
+  >
+
+  <label for="description" class="form__label">Beskrivning</label>
+  <input 
+    name="description"
+    type="text" 
+    value="<%= data?.description %>" 
+    class="form__input max-width-unset" 
+    required
+  >
+
+  <label for="tags" class="form__label">Nyckelord</label>
+  <input 
+    name="tags"
+    type="text" 
+    value="<%= data?.tags.toString() %>" 
+    class="form__input max-width-unset" 
+    required
+  >
+
+  <label for="body" class="form__label">Text</label>
+  <textarea 
+    name="body" 
+    cols="50" 
+    rows="10" 
+    class="form__body"
+    required
+  >
+    <%= data?.body %>
+  </textarea>
+
+  <input 
+    type="submit" 
+    value="Uppdatera" 
+    class="form__btn"
+  >
+</form>
+
+<br>
+<br>
+<br>
+
+<h2 class="center margin-bottom">Ta bort inlägget</h2>
+<form 
+  action="/delete-post/<%= data?.slug %>?_method=DELETE" 
+  method="POST" 
+  class="center"
+>
+  <input type="submit" value="Delete" class="form__btn">
+</form>

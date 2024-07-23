@@ -1,0 +1,27 @@
+/*===============================================
+Light switch
+===============================================*/
+.light-switch {
+  background-color: black;
+  height: 50px;
+  width: 2px;
+  border: 1px solid black;
+  overflow:visible;
+
+  position: absolute;
+  right: 25%;
+  top: -5px;
+  cursor: pointer;
+  
+}
+
+.light-switch::after {
+  content: "";
+  background-color: black;
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  top: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+}

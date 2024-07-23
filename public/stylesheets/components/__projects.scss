@@ -1,0 +1,21 @@
+/*===============================================
+Projects
+===============================================*/
+.projects,
+.project {
+  display: flex;
+  flex-direction: column;
+}
+
+.projects {
+  gap: 25px;
+}
+
+.project {
+  gap: 7px;
+}
+
+.project a {
+  display: block;
+}
+

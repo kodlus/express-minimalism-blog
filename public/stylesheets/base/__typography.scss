@@ -1,0 +1,11 @@
+/*===============================================
+Typography
+===============================================*/
+body {
+  font-family: monospace, Arial, Helvetica, sans-serif;
+}
+
+.blog-post-body,
+.form__body {
+  white-space-collapse: preserve-breaks;
+}

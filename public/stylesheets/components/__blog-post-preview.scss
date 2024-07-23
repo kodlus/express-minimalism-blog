@@ -1,0 +1,88 @@
+/*===============================================
+Variables
+===============================================*/
+$borderWidth: 2px;
+
+/*===============================================
+Blog posts preview
+===============================================*/
+.blog-post-preview {
+  padding: 0.7em;
+  margin-bottom: 5px;
+
+  position: relative;
+}
+
+.blog-post-preview::before {
+  content: "";
+  background: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: $borderWidth;
+  width: 30px;
+
+}
+
+.blog-post-preview::after {
+  content: "";
+  background: black;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: $borderWidth;
+  width: 30px;
+}
+
+.blog-post-preview__header {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  text-align: center;
+  margin-bottom: 0.7em;
+}
+
+.blog-post-preview__header::before {
+  content: "";
+  background: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: $borderWidth;
+}
+
+.blog-post-preview__button {
+  display: block;
+  background: none;
+  border: none;
+  border-bottom: 1px solid black;
+  padding: 0.5em;
+
+  margin: 0 auto 1em auto;
+}
+
+.blog-post-preview__body {
+  height: 0px;
+  display: flex;
+  align-items: center;
+
+  overflow-y: hidden;
+  transition: height linear 0.3s;
+  max-width: 40em;
+  margin: 0 auto;
+}
+
+.blog-post-preview__body::before {
+  content: "";
+  background: black;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 30px;
+  width: $borderWidth;
+}
+
+.blog-post-preview__body.expanded {
+  height: 50px;
+}

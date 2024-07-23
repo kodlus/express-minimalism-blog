@@ -1,0 +1,26 @@
+/*===============================================
+Main layout
+===============================================*/
+body {
+  background-color: rgb(255, 229, 199);
+  display: grid;
+  grid-template-columns: auto minmax(10em, 40em) auto;
+
+  grid-template-areas: 
+    "header header header"
+    ". content ."
+  ;
+
+  transition: background-color 0.75s ease-out;
+}
+
+.header {
+  grid-area: header;
+  width: 100%;
+}
+
+.main {
+  grid-area: content;
+  padding: 0 1em;
+  margin-bottom: 1em;
+}

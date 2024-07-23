@@ -1,0 +1,38 @@
+{
+  "name": "express-minimalism-blog",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "compression": "^1.7.4",
+    "connect-mongo": "^5.1.0",
+    "cookie-parser": "~1.4.6",
+    "debug": "~4.3.5",
+    "dotenv": "^16.4.5",
+    "ejs": "~3.1.10",
+    "express": "~4.19.2",
+    "express-async-handler": "^1.2.0",
+    "express-ejs-layouts": "^2.5.1",
+    "express-rate-limit": "^7.3.1",
+    "express-session": "^1.18.0",
+    "express-validator": "^7.1.0",
+    "helmet": "^7.1.0",
+    "http-errors": "~2.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "luxon": "^3.4.4",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.5.1",
+    "morgan": "~1.10.0",
+    "sass": "^1.77.8"
+  },
+  "engines": {
+    "node": ">=v18"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

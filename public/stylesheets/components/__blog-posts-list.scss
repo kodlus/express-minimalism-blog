@@ -1,0 +1,9 @@
+/*===============================================
+Blog posts list
+===============================================*/
+.blog-posts-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 25px;
+}
