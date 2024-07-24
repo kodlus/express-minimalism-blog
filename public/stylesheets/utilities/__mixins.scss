@@ -1,8 +1,9 @@
 /*===============================================
-CV
+Mixins
 ===============================================*/
-.projects {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+@mixin maxWidth {
+  width: 100%;
+  max-width: 40em;
+  margin: 0 auto;
 }
+

@@ -16,6 +16,109 @@ Header
 }
 
 .header__nav {
-  display: flex;
-  gap: 25px;  
+  //display: flex;
+  //align-items: center;
+  //gap: 25px;  
+}
+
+
+.header__nav {
+  flex-direction: column;
+  justify-content: center;
+}
+/*===============================================
+Burger menu
+===============================================*/
+#hamburger {
+  display: none; // should be none
+  position: relative;
+}
+
+#hamnav {
+  display: none;
+}
+
+/* (B) HORIZONTAL MENU ITEMS */
+#hamburger__items { 
+  display: flex; 
+  align-items: center;
+}
+
+#hamburger__items a {
+  flex-grow: 1;
+  flex-basis: 0;
+  padding: 10px;
+  text-align: center;
+}
+
+
+/* (C) HIDE HAMBURGER */
+#hamnav label { 
+  display: none; 
+}
+
+/* [ON SMALL SCREENS] */
+@media screen and (max-width: 768px) {
+  /* (A) BREAK INTO VERTICAL MENU */
+  #hamburger__items a {
+    display: block;
+    width: 100%;
+    border-top: 1px solid #333;
+  }
+ 
+  /* (B) SHOW HAMBURGER ICON */
+  .header label { 
+    display: inline-block; 
+    margin: 0 auto;
+    color: black;
+    font-style: normal;
+    font-size: 1.2em;
+    padding: 10px;
+
+    position: fixed;
+    background-color: white;
+    height: 50px;
+    width: 50px;
+    border: 1px solid black;
+    border-radius: 50px;
+    text-align: center;
+    z-index: 9;
+    bottom: 25px;
+    right: 25px;
+  }
+
+  /* (C) TOGGLE SHOW/HIDE MENU */
+  #hamburger__items { 
+    display: none; // none
+  }
+
+  .header input:checked ~ #hamnav { 
+    position: fixed;
+    bottom: 95px;
+    right: 0;
+    width: 150px;
+    background-color: white;
+    padding: 1em;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+ 
+
+    z-index: 9;
+    animation: transitionIn 0.5s;
+  }
+}
+
+/*===============================================
+Media queries
+===============================================*/
+@media screen and (max-width: 720px) {
+  .header__logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+  }
 }

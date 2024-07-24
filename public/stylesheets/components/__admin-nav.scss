@@ -1,0 +1,12 @@
+/*===============================================
+Header
+===============================================*/
+.admin-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  width: 100%;
+  max-width: 40em;  
+}

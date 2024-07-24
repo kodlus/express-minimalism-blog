@@ -17,7 +17,8 @@ Modules
 @use "./themes/_dark-mode";
 @use "./components/_form";
 @use "./components/_projects";
-
+@use "./components/_blog-post";
+@use "./components/_admin-nav";
 
 
 @use "./utilities/_classes";

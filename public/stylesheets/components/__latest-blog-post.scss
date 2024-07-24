@@ -1,17 +1,21 @@
 /*===============================================
-Variables
+Mixin and Variables
 ===============================================*/
+@use "../utilities/_mixins" as m;
 $borderWidth: 2px;
 
 /*===============================================
 Latest blog post
 ===============================================*/
 .latest-blog-post {
+  @include m.maxWidth;
+  
   margin-bottom: 10em;
   position: relative;
 
   border-top: $borderWidth solid black;
   border-bottom: $borderWidth solid black;
+
 }
 
 .latest-blog-post::before {
@@ -35,7 +39,6 @@ Latest blog post
   height: 50%;
   width: $borderWidth; 
 }
-
 
 .latest-blog-post__header {
   text-align: center;

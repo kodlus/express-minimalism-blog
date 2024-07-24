@@ -25,3 +25,12 @@ Light switch
   left: 50%;
   transform: translateX(-50%);
 }
+
+/*===============================================
+Media queries
+===============================================*/
+@media (max-width: 768px) {
+  .light-switch {
+    right: 5%;
+  }
+}

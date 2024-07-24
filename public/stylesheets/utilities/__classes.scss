@@ -31,12 +31,26 @@ Utility classes
   float: left;
 }
 
+.helper-title {
+  display: none;
+  font-size: 1.2rem;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
+
 .margin-bottom {
   margin-bottom: 0.7em;
 }
 
 .max-width-unset {
   max-width: unset;
+}
+
+.max-width {
+  max-width: 40em;
+  margin: 0 auto;
 }
 
 .underline {

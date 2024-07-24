@@ -1,21 +1,18 @@
 /*===============================================
-Mixin 
+Mixin
 ===============================================*/
 @use "../utilities/_mixins" as m;
 
 /*===============================================
-About page
+Blog post
 ===============================================*/
-.about-page__content {
+.blog-post {
   @include m.maxWidth;
-  line-height: 1.6;
-  white-space-collapse:preserve-breaks;
 }
 
-.about-page__profile-img {
-  width: 175px;
-  height: 175px;
-  border-radius: 50%;
-  margin: 0 auto;
+.blog-post__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 }
-

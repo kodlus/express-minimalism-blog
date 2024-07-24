@@ -39,12 +39,18 @@ body {
 }
 
 /*===============================================
-Variables
+Mixin and Variables
+===============================================*/
+/*===============================================
+Mixins
 ===============================================*/
 /*===============================================
 Latest blog post
 ===============================================*/
 .latest-blog-post {
+  width: 100%;
+  max-width: 40em;
+  margin: 0 auto;
   margin-bottom: 10em;
   position: relative;
   border-top: 2px solid black;
@@ -111,14 +117,110 @@ Header
 }
 
 .header__nav {
-  display: flex;
-  gap: 25px;
+  flex-direction: column;
+  justify-content: center;
 }
 
+/*===============================================
+Burger menu
+===============================================*/
+#hamburger {
+  display: none;
+  position: relative;
+}
+
+#hamnav {
+  display: none;
+}
+
+/* (B) HORIZONTAL MENU ITEMS */
+#hamburger__items {
+  display: flex;
+  align-items: center;
+}
+
+#hamburger__items a {
+  flex-grow: 1;
+  flex-basis: 0;
+  padding: 10px;
+  text-align: center;
+}
+
+/* (C) HIDE HAMBURGER */
+#hamnav label {
+  display: none;
+}
+
+/* [ON SMALL SCREENS] */
+@media screen and (max-width: 768px) {
+  /* (A) BREAK INTO VERTICAL MENU */
+  #hamburger__items a {
+    display: block;
+    width: 100%;
+    border-top: 1px solid #333;
+  }
+  /* (B) SHOW HAMBURGER ICON */
+  .header label {
+    display: inline-block;
+    margin: 0 auto;
+    color: black;
+    font-style: normal;
+    font-size: 1.2em;
+    padding: 10px;
+    position: fixed;
+    background-color: white;
+    height: 50px;
+    width: 50px;
+    border: 1px solid black;
+    border-radius: 50px;
+    text-align: center;
+    z-index: 9;
+    bottom: 25px;
+    right: 25px;
+  }
+  /* (C) TOGGLE SHOW/HIDE MENU */
+  #hamburger__items {
+    display: none;
+  }
+  .header input:checked ~ #hamnav {
+    position: fixed;
+    bottom: 95px;
+    right: 0;
+    width: 150px;
+    background-color: white;
+    padding: 1em;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    z-index: 9;
+    animation: transitionIn 0.5s;
+  }
+}
+/*===============================================
+Media queries
+===============================================*/
+@media screen and (max-width: 720px) {
+  .header__logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+  }
+}
+/*===============================================
+Mixin and Variables
+===============================================*/
+/*===============================================
+Mixin
+===============================================*/
 /*===============================================
 Blog posts list
 ===============================================*/
 .blog-posts-list {
+  width: 100%;
+  max-width: 40em;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 25px;
@@ -212,9 +314,13 @@ Main layout
 ===============================================*/
 body {
   background-color: rgb(255, 229, 199);
-  display: grid;
-  grid-template-columns: auto minmax(10em, 40em) auto;
-  grid-template-areas: "header header header" ". content .";
+  /*   display: grid;
+    grid-template-columns: auto minmax(10em, 40em) auto;
+
+    grid-template-areas: 
+      "header header header"
+      ". content ."
+    ; */
   transition: background-color 0.75s ease-out;
 }
 
@@ -224,15 +330,23 @@ body {
 }
 
 .main {
-  grid-area: content;
   padding: 0 1em;
   margin-bottom: 1em;
 }
 
 /*===============================================
+Mixin and Variables
+===============================================*/
+/*===============================================
+Mixin 
+===============================================*/
+/*===============================================
 About page
 ===============================================*/
 .about-page__content {
+  width: 100%;
+  max-width: 40em;
+  margin: 0 auto;
   line-height: 1.6;
   white-space-collapse: preserve-breaks;
 }
@@ -252,16 +366,6 @@ Breadcrumb
 }
 
 /*===============================================
-Move to own file
-===============================================*/
-.blog-post__header {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center;
-  gap: 15px;
-}
-
-/*===============================================
 Page transition animation
 borrowed from https://www.youtube.com/watch?v=zWB219zf1og
 ===============================================*/
@@ -277,6 +381,16 @@ borrowed from https://www.youtube.com/watch?v=zWB219zf1og
   to {
     opacity: 1;
     transform: rotateX(0deg);
+  }
+}
+@keyframes transitionOut {
+  from {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+  to {
+    opacity: 0;
+    transform: rotateX(-10deg);
   }
 }
 /*===============================================
@@ -336,25 +450,55 @@ Light switch
 }
 
 /*===============================================
+Media queries
+===============================================*/
+@media (max-width: 768px) {
+  .light-switch {
+    right: 5%;
+  }
+}
+/*===============================================
 Dark mode
 ===============================================*/
 .dark-mode {
   background-color: rgb(70, 70, 70);
   color: white;
 }
+.dark-mode .blog-post-preview__button {
+  color: white;
+}
 .dark-mode a {
   color: rgb(255, 197, 158);
 }
+.dark-mode #hamnav a {
+  color: black;
+}
+.dark-mode #hamnav a:hover,
+.dark-mode #hamnav a:focus {
+  color: rgb(158, 86, 4);
+}
 
+/*===============================================
+Mixin and Variables
+===============================================*/
+/*===============================================
+Mixin
+===============================================*/
 /*===============================================
 Form
 ===============================================*/
 .form-header {
+  width: 100%;
+  max-width: 40em;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
 
 .form {
+  width: 100%;
+  max-width: 40em;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
@@ -384,6 +528,12 @@ Form
 }
 
 /*===============================================
+Mixin and Variables
+===============================================*/
+/*===============================================
+Mixin 
+===============================================*/
+/*===============================================
 Projects
 ===============================================*/
 .projects,
@@ -394,6 +544,9 @@ Projects
 
 .projects {
   gap: 25px;
+  width: 100%;
+  max-width: 40em;
+  margin: 0 auto;
 }
 
 .project {
@@ -402,6 +555,40 @@ Projects
 
 .project a {
   display: block;
+}
+
+/*===============================================
+Mixin and Variables
+===============================================*/
+/*===============================================
+Mixin
+===============================================*/
+/*===============================================
+Blog post
+===============================================*/
+.blog-post {
+  width: 100%;
+  max-width: 40em;
+  margin: 0 auto;
+}
+
+.blog-post__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+/*===============================================
+Header
+===============================================*/
+.admin-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  max-width: 40em;
 }
 
 /*===============================================
@@ -436,12 +623,27 @@ Utility classes
   float: left;
 }
 
+.helper-title {
+  display: none;
+  font-size: 1.2rem;
+}
+@media (max-width: 768px) {
+  .helper-title {
+    display: block;
+  }
+}
+
 .margin-bottom {
   margin-bottom: 0.7em;
 }
 
 .max-width-unset {
   max-width: unset;
+}
+
+.max-width {
+  max-width: 40em;
+  margin: 0 auto;
 }
 
 .underline {

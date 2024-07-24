@@ -1,14 +1,21 @@
 <header class="header">
   <p class="header__logo">&lt;&gt; Kodlus' blog &lt;/&gt;</p>
-  <nav class="header__nav">
-    <a href="/" class="nav__link link-reset">Hem</a>
-    <a href="/posts" class="nav__link link-reset">Inlägg</a>
-    <a href="/about" class="nav__link link-reset">Om bloggen</a>
-    <a href="/projects" class="nav__link link-reset">Projekt</a>
-    <a href="/admin/dashboard" class="nav__link link-reset">Admin</a>
+  
+  <nav class="header__nav" id="hamnav">
+    <label for="hamburger">&#9776;</label>
+    <input type="checkbox" id="hamburger"/>
+
+    <div id="hamburger__items">
+      <a href="/" class="nav__link link-reset">Hem</a>
+      <a href="/posts" class="nav__link link-reset">Inlägg</a>
+      <a href="/about" class="nav__link link-reset">Om bloggen</a>
+      <a href="/projects" class="nav__link link-reset">Projekt</a>
+      <a href="/login" class="nav__link link-reset">Admin</a>
+    </div>
   </nav>
 
-  <nav class="header__nav">
+  <p class="helper-title">Admin</p>
+  <nav class="admin-nav">
     <a href="/admin/dashboard" class="sub-nav__link link-reset">Dashboard</a>
     <a href="/admin/create-new-post" class="sub-nav__link link-reset">Skapa nytt inlägg</a>
 

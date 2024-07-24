@@ -1,12 +1,19 @@
 /*===============================================
+Mixin
+===============================================*/
+@use "../utilities/_mixins" as m;
+
+/*===============================================
 Form
 ===============================================*/
 .form-header {
+  @include m.maxWidth;
   display: flex;
   flex-direction: column;
 }
 
 .form {
+  @include m.maxWidth;
   display: flex;
   flex-direction: column;
 }

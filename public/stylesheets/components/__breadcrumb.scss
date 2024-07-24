@@ -5,13 +5,3 @@ Breadcrumb
   display: block;
 
 }
-
-/*===============================================
-Move to own file
-===============================================*/
-.blog-post__header {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center;
-  gap: 15px;
-}

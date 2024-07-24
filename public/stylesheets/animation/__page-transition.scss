@@ -17,3 +17,15 @@ borrowed from https://www.youtube.com/watch?v=zWB219zf1og
     transform: rotateX(0deg);
   }
 }
+
+@keyframes transitionOut {
+  from {
+    opacity: 1;
+    transform: rotateX(0deg);
+  }
+
+  to {
+    opacity: 0;
+    transform: rotateX(-10deg);
+  }
+}

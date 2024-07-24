@@ -5,7 +5,19 @@ Dark mode
   background-color: rgb(70, 70, 70);
   color: white;
 
+  .blog-post-preview__button {
+    color: white;
+  }
+
   a {
     color: rgb(255, 197, 158);
+  }
+
+  #hamnav a {
+    color: black;
+  }
+  #hamnav a:hover,
+  #hamnav a:focus{
+    color: rgb(158, 86, 4);
   }
 }

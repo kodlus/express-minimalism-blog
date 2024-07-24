@@ -1,7 +1,12 @@
+<h1 class="center margin-bottom">Hem</h1>
 <section>
   <div class="latest-blog-post">
     <div class="latest-blog-post__header">
-      <h1><%= latestPost.title %></h1>
+      <h2>
+        <a href="/posts/<%= latestPost.slug %>">
+          <%= latestPost.title %>
+        </a>
+      </h2>
       <span> <%= latestPost.createdAt.toLocaleDateString() %></span>
     </div>
 
@@ -17,9 +22,8 @@
   </div>
 </section>
 
-
 <section>
-  <h2 class="center margin-bottom underline">Tidigare inlägg:</h2>
+  <h2 class="center margin-bottom">Tidigare inlägg:</h2>
   
   <div class="blog-posts-list">
   <% previousPosts?.forEach(post => { %> <!-- Tag start -->

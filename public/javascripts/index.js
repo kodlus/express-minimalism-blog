@@ -6,37 +6,32 @@ const previewButtons = document?.querySelectorAll(".blog-post-preview__button");
 const navigationElements = document?.querySelectorAll(".nav__link");
 const subNavElements = document?.querySelectorAll(".sub-nav__link");
 const lightSwitch = document?.getElementById("light-switch");
-
 const blogPostBody = document?.querySelectorAll(".blog-post-preview__body");
-
 
 /*===============================================
 Highlight navigation link 
 ===============================================*/
 // Grab the current pathname
 const pathname = window.location.pathname;
-const indexRoute = "";
-const namedRouteFirstDegree = pathname.split("/")[1];
-const namedRouteSecondDegree = pathname.split("/")[2];
 
-// Check each navigation link in the header and see if 
-// one matches the current pathname. If so, highlight it
-navigationElements.forEach(element => {
-  // The href is the same as the pathname
-  if (namedRouteFirstDegree === element.getAttribute("href").split("/")[1] || namedRouteFirstDegree === element.getAttribute("href").split("/")[2]) {
+// Check navigation
+for (const element of navigationElements) {
+  if (element.href.split("/").pop() === pathname.split("/").pop()) {
     element.classList.add("active");
-  } else {
-    element.classList.remove("active");
-  };
-});
+  } else if(
+    pathname.split("/")[1] === "admin" &&
+    element.href.split("/").pop() === "login"
+  ) {
+    element.classList.add("active");
+  }
+}
 
-subNavElements.forEach(element => {
-  if (namedRouteSecondDegree === element.getAttribute("href").split("/")[2]) {
+// Check subnavigation
+for (const element of subNavElements) {
+  if (element.href.split("/").pop() === pathname.split("/").pop()) {
     element.classList.add("active");
-  } else {
-    element.classList.remove("active");
-  };
-});
+  }
+}
 
 /*===============================================
 Event listeners
