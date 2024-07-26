@@ -18,16 +18,22 @@ Form
   flex-direction: column;
 }
 
+.form__input,
+.form__btn {
+  width: 100%;
+  max-width: 200px;
+  padding: 1em;
+  border: 1px solid black;
+  margin: 0 auto;
+}
+
 .form__label {
   margin-bottom: 7px;
 }
 
 .form__input {
-  padding: 0.7em;
   margin: 0 auto;
   margin-bottom: 20px;
-  width: 100%;
-  max-width: 200px;
 }
 
 .form__body {
@@ -35,10 +41,8 @@ Form
 }
 
 .form__btn {
-  width: 100%;
-  max-width: 200px;
-  padding: 1em;
-  margin: 0 auto;
   margin-top: 10px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: background-color 0.25s ease-in;
 }
-

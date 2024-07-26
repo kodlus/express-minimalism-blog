@@ -57,11 +57,11 @@
 <br>
 <br>
 
-<h2 class="center margin-bottom">Ta bort inlägget</h2>
+<h2 class="center margin-bottom danger">Ta bort inlägget</h2>
 <form 
   action="/delete-post/<%= data?.slug %>?_method=DELETE" 
   method="POST" 
   class="center"
 >
-  <input type="submit" value="Delete" class="form__btn">
+  <input type="submit" value="Delete" class="form__btn form__btn--danger">
 </form>

@@ -6,8 +6,12 @@ Mixin
 /*===============================================
 About page
 ===============================================*/
-.about-page__content {
+.about-page {
   @include m.maxWidth;
+}
+
+.about-page__content {
+
   line-height: 1.6;
   white-space-collapse:preserve-breaks;
 }

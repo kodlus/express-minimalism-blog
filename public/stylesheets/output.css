@@ -16,14 +16,14 @@ Reset
   box-sizing: border-box;
 }
 
+button {
+  cursor: pointer;
+}
+
 img {
   display: block;
   width: 100%;
   object-fit: cover;
-}
-
-button {
-  cursor: pointer;
 }
 
 /*===============================================
@@ -51,6 +51,7 @@ Latest blog post
   width: 100%;
   max-width: 40em;
   margin: 0 auto;
+  min-height: 20em;
   margin-bottom: 10em;
   position: relative;
   border-top: 2px solid black;
@@ -117,20 +118,21 @@ Header
 }
 
 .header__nav {
-  flex-direction: column;
-  justify-content: center;
+  display: flex;
+}
+
+.header__nav {
+  justify-content: space-between;
+  gap: 25px;
 }
 
 /*===============================================
 Burger menu
+https://code-boxx.com/simple-responsive-pure-css-hamburger-menu/
 ===============================================*/
 #hamburger {
   display: none;
   position: relative;
-}
-
-#hamnav {
-  display: none;
 }
 
 /* (B) HORIZONTAL MENU ITEMS */
@@ -146,29 +148,23 @@ Burger menu
   text-align: center;
 }
 
-/* (C) HIDE HAMBURGER */
-#hamnav label {
+.hamburger-icon {
   display: none;
 }
 
-/* [ON SMALL SCREENS] */
 @media screen and (max-width: 768px) {
-  /* (A) BREAK INTO VERTICAL MENU */
   #hamburger__items a {
     display: block;
     width: 100%;
     border-top: 1px solid #333;
   }
-  /* (B) SHOW HAMBURGER ICON */
-  .header label {
+  .hamburger-icon {
     display: inline-block;
     margin: 0 auto;
-    color: black;
     font-style: normal;
     font-size: 1.2em;
     padding: 10px;
     position: fixed;
-    background-color: white;
     height: 50px;
     width: 50px;
     border: 1px solid black;
@@ -178,31 +174,34 @@ Burger menu
     bottom: 25px;
     right: 25px;
   }
-  /* (C) TOGGLE SHOW/HIDE MENU */
-  #hamburger__items {
+  .hamburger-icon:active {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+  }
+  .header__nav {
     display: none;
   }
-  .header input:checked ~ #hamnav {
+  .header input:checked ~ .header__nav {
     position: fixed;
     bottom: 95px;
     right: 0;
     width: 150px;
-    background-color: white;
-    padding: 1em;
+    padding: 50px;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 25px;
+    gap: 50px;
+    text-align: center;
     z-index: 9;
-    animation: transitionIn 0.5s;
+    animation: transitionIn 0.3s;
   }
 }
 /*===============================================
 Media queries
 ===============================================*/
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 768px) {
   .header__logo {
     font-size: 1.5rem;
     font-weight: 900;
@@ -313,14 +312,6 @@ Blog posts preview
 Main layout
 ===============================================*/
 body {
-  background-color: rgb(255, 229, 199);
-  /*   display: grid;
-    grid-template-columns: auto minmax(10em, 40em) auto;
-
-    grid-template-areas: 
-      "header header header"
-      ". content ."
-    ; */
   transition: background-color 0.75s ease-out;
 }
 
@@ -343,10 +334,13 @@ Mixin
 /*===============================================
 About page
 ===============================================*/
-.about-page__content {
+.about-page {
   width: 100%;
   max-width: 40em;
   margin: 0 auto;
+}
+
+.about-page__content {
   line-height: 1.6;
   white-space-collapse: preserve-breaks;
 }
@@ -398,11 +392,12 @@ Links
 ===============================================*/
 a {
   transition: color 250ms ease-in;
+  color: rgb(0, 69, 82);
 }
 
 a:hover,
 a:focus {
-  color: rgb(241, 174, 27);
+  color: rgb(165, 19, 19);
 }
 
 /*===============================================
@@ -458,27 +453,6 @@ Media queries
   }
 }
 /*===============================================
-Dark mode
-===============================================*/
-.dark-mode {
-  background-color: rgb(70, 70, 70);
-  color: white;
-}
-.dark-mode .blog-post-preview__button {
-  color: white;
-}
-.dark-mode a {
-  color: rgb(255, 197, 158);
-}
-.dark-mode #hamnav a {
-  color: black;
-}
-.dark-mode #hamnav a:hover,
-.dark-mode #hamnav a:focus {
-  color: rgb(158, 86, 4);
-}
-
-/*===============================================
 Mixin and Variables
 ===============================================*/
 /*===============================================
@@ -503,16 +477,22 @@ Form
   flex-direction: column;
 }
 
+.form__input,
+.form__btn {
+  width: 100%;
+  max-width: 200px;
+  padding: 1em;
+  border: 1px solid black;
+  margin: 0 auto;
+}
+
 .form__label {
   margin-bottom: 7px;
 }
 
 .form__input {
-  padding: 0.7em;
   margin: 0 auto;
   margin-bottom: 20px;
-  width: 100%;
-  max-width: 200px;
 }
 
 .form__body {
@@ -520,11 +500,10 @@ Form
 }
 
 .form__btn {
-  width: 100%;
-  max-width: 200px;
-  padding: 1em;
-  margin: 0 auto;
   margin-top: 10px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: background-color 0.25s ease-in;
 }
 
 /*===============================================
@@ -592,6 +571,107 @@ Header
 }
 
 /*===============================================
+Variables
+===============================================*/
+body {
+  background-color: #e9c46a;
+  color: #1d1d1d;
+}
+body a {
+  color: #264653;
+}
+body .blog-post-preview__button {
+  color: #1d1d1d;
+}
+body .hamburger-icon {
+  background-color: #ffffff;
+  color: black;
+}
+body .form__btn {
+  background-color: #2a9d8f;
+  color: #ffffff;
+}
+body .form__btn:hover,
+body .form__btn:focus {
+  background-color: #264653;
+}
+body .form__btn--danger {
+  background-color: rgb(255, 124, 124);
+  color: #ffffff;
+}
+body .form__btn--danger:hover,
+body .form__btn--danger:focus {
+  background-color: rgb(255, 124, 124);
+  background-color: rgb(248, 51, 51);
+  color: #1d1d1d;
+}
+body .active {
+  color: #1d1d1d;
+}
+body .danger {
+  color: #9f0000;
+}
+@media screen and (max-width: 768px) {
+  body .header input:checked ~ .header__nav {
+    background-color: #ffffff;
+  }
+}
+
+/*===============================================
+Variables
+===============================================*/
+/*===============================================
+Dark mode
+===============================================*/
+.dark-mode {
+  background-color: #212d40;
+  color: #d6d5d5;
+}
+.dark-mode a {
+  color: #f5a816;
+}
+.dark-mode .blog-post-preview::before,
+.dark-mode .blog-post-preview::after,
+.dark-mode .blog-post-preview__header::before,
+.dark-mode .blog-post-preview__body::before,
+.dark-mode .latest-blog-post::before,
+.dark-mode .latest-blog-post::after,
+.dark-mode .light-switch::after {
+  background: #d6d5d5;
+}
+.dark-mode .light-switch {
+  border-color: #f5a816;
+}
+.dark-mode .blog-post-preview__button {
+  color: #d6d5d5;
+  border-bottom-color: #d6d5d5;
+}
+.dark-mode .latest-blog-post {
+  border-top-color: #d6d5d5;
+  border-bottom-color: #d6d5d5;
+}
+.dark-mode .nav__link,
+.dark-mode .sub-nav__link,
+.dark-mode .header__button a {
+  color: #d6d5d5;
+}
+.dark-mode .active {
+  color: #f5a816;
+}
+.dark-mode .form__btn--danger {
+  background-color: #ff7171;
+  color: #11151c;
+}
+.dark-mode .danger {
+  color: #ff7171;
+}
+@media screen and (max-width: 720px) {
+  .dark-mode .nav__link {
+    color: #11151c;
+  }
+}
+
+/*===============================================
 Utility classes
 ===============================================*/
 .link-reset {
@@ -601,7 +681,6 @@ Utility classes
 
 .active {
   font-weight: 700;
-  color: red;
   text-decoration: underline;
   text-underline-offset: 5px;
 }

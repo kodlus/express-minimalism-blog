@@ -14,11 +14,11 @@ Modules
 @use "./components/_links";
 @use "./animation/_light-switch-animation";
 @use "./components/_light-switch";
-@use "./themes/_dark-mode";
 @use "./components/_form";
 @use "./components/_projects";
 @use "./components/_blog-post";
 @use "./components/_admin-nav";
 
-
+@use "./themes/_base";
+@use "./themes/_dark-mode";
 @use "./utilities/_classes";

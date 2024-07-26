@@ -16,27 +16,26 @@ Header
 }
 
 .header__nav {
-  //display: flex;
+  display: flex;
   //align-items: center;
   //gap: 25px;  
 }
 
 
 .header__nav {
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 25px;
 }
 /*===============================================
 Burger menu
+https://code-boxx.com/simple-responsive-pure-css-hamburger-menu/
 ===============================================*/
 #hamburger {
   display: none; // should be none
   position: relative;
 }
 
-#hamnav {
-  display: none;
-}
+
 
 /* (B) HORIZONTAL MENU ITEMS */
 #hamburger__items { 
@@ -52,31 +51,29 @@ Burger menu
 }
 
 
-/* (C) HIDE HAMBURGER */
-#hamnav label { 
+// Hide hamburger on big screens
+.hamburger-icon { 
   display: none; 
 }
 
-/* [ON SMALL SCREENS] */
+// Hamburger small screen attributes
 @media screen and (max-width: 768px) {
-  /* (A) BREAK INTO VERTICAL MENU */
+  // Hamburger links
   #hamburger__items a {
     display: block;
     width: 100%;
     border-top: 1px solid #333;
   }
  
-  /* (B) SHOW HAMBURGER ICON */
-  .header label { 
+  // Show the hamburger icon
+  .hamburger-icon { 
     display: inline-block; 
     margin: 0 auto;
-    color: black;
     font-style: normal;
     font-size: 1.2em;
     padding: 10px;
 
     position: fixed;
-    background-color: white;
     height: 50px;
     width: 50px;
     border: 1px solid black;
@@ -87,36 +84,41 @@ Burger menu
     right: 25px;
   }
 
-  /* (C) TOGGLE SHOW/HIDE MENU */
-  #hamburger__items { 
+  .hamburger-icon:active{
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+  }
+
+  .header__nav { 
     display: none; // none
   }
 
-  .header input:checked ~ #hamnav { 
+  .header input:checked ~ .header__nav { 
     position: fixed;
     bottom: 95px;
     right: 0;
     width: 150px;
-    background-color: white;
-    padding: 1em;
+    
+    padding: 50px;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
 
     display: flex; 
     flex-direction: column;
     align-items: center;
-    gap: 25px;
- 
+    gap: 50px;
+    
+    text-align: center;
 
     z-index: 9;
-    animation: transitionIn 0.5s;
+    animation: transitionIn 0.3s;
   }
 }
 
 /*===============================================
 Media queries
 ===============================================*/
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 768px) {
   .header__logo {
     font-size: 1.5rem;
     font-weight: 900;

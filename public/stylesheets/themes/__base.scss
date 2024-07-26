@@ -1,0 +1,67 @@
+/*===============================================
+Variables
+===============================================*/
+$baseDarkerGreen: #264653;
+$baseGreen: #2a9d8f;
+$baseYellow: #e9c46a;
+$baseOrange: #f4a261;
+$baseBrown: #621502;
+$baseWhite: #ffffff;
+$baseBlack: #1d1d1d;
+
+
+body {
+  background-color: $baseYellow;
+  color: $baseBlack;
+
+  a {
+    color: $baseDarkerGreen;
+  }
+
+  .blog-post-preview__button {
+    color: $baseBlack;
+  }
+  
+  .hamburger-icon {
+    background-color: $baseWhite;
+    color: black;
+  }
+
+  .form__btn {
+    background-color: $baseGreen;
+    color: $baseWhite;
+  }
+
+  .form__btn:hover,
+  .form__btn:focus {
+    background-color: $baseDarkerGreen;
+  }
+
+  .form__btn--danger {
+    background-color: rgb(255, 124, 124);
+    //background-color: rgb(248, 51, 51);
+    color: $baseWhite;
+  }
+
+  .form__btn--danger:hover,
+  .form__btn--danger:focus {
+    background-color: rgb(255, 124, 124);
+    background-color: rgb(248, 51, 51);
+    color: $baseBlack;
+  }
+
+  .active {
+    color: $baseBlack;
+  }
+
+  .danger {
+    color: #9f0000;
+  }
+
+  // Small screens
+  @media screen and (max-width: 768px) {
+    .header input:checked ~ .header__nav {
+      background-color: $baseWhite;
+    }
+  }
+}

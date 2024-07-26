@@ -9,13 +9,12 @@ Latest blog post
 ===============================================*/
 .latest-blog-post {
   @include m.maxWidth;
-  
+  min-height: 20em;
   margin-bottom: 10em;
   position: relative;
 
   border-top: $borderWidth solid black;
   border-bottom: $borderWidth solid black;
-
 }
 
 .latest-blog-post::before {

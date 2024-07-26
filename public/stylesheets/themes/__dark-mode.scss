@@ -1,23 +1,74 @@
 /*===============================================
+Variables
+===============================================*/
+$darkModeDarkerBlack: #11151c;
+$darkModeDarkBlack: #212d40;
+$darkModeBlack: #364156;
+$darkModeBrown: #7d4e57;
+$darkModeOrange: #f5a816; //#d66853;
+$darkModeWhite: #d6d5d5;
+$darkModeRed: #ff7171;
+
+/*===============================================
 Dark mode
 ===============================================*/
+// This class is applied to the "body" element
 .dark-mode {
-  background-color: rgb(70, 70, 70);
-  color: white;
-
-  .blog-post-preview__button {
-    color: white;
-  }
+  background-color: $darkModeDarkBlack;
+  color: $darkModeWhite;
 
   a {
-    color: rgb(255, 197, 158);
+    color: $darkModeOrange;
   }
 
-  #hamnav a {
-    color: black;
+  .blog-post-preview::before,
+  .blog-post-preview::after,
+  .blog-post-preview__header::before,
+  .blog-post-preview__body::before,
+  .latest-blog-post::before,
+  .latest-blog-post::after,
+  .light-switch::after
+   {
+    background: $darkModeWhite;
   }
-  #hamnav a:hover,
-  #hamnav a:focus{
-    color: rgb(158, 86, 4);
+
+  .light-switch {
+    border-color: $darkModeOrange;
+  }
+  
+  .blog-post-preview__button {
+    color: $darkModeWhite;
+    border-bottom-color: $darkModeWhite;
+  }
+
+  .latest-blog-post {
+    border-top-color: $darkModeWhite;
+    border-bottom-color: $darkModeWhite;
+  }
+
+  .nav__link,
+  .sub-nav__link,
+  .header__button a {
+    color: $darkModeWhite;
+  }
+
+  .active {
+    color: $darkModeOrange;
+  }
+
+  .form__btn--danger {
+    background-color: $darkModeRed;
+    color: $darkModeDarkerBlack;
+  }
+
+  .danger {
+    color: $darkModeRed;
+  }
+
+  // Small screens
+  @media screen and (max-width: 720px) {
+    .nav__link {
+      color: $darkModeDarkerBlack;
+    }
   }
 }
