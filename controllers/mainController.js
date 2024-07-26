@@ -137,7 +137,9 @@ exports.post_login_credentials = asyncHandler(async (req, res, next) => {
   // Create the http only cookie (cannot be read on the client side)
   res.cookie("jwt", jasonWebToken, { 
     httpOnly: true,
-    sameSite: true, 
+    sameSite: "None", // Chrome setting
+    secure: true,
+    maxAge: 24 * 60 * 60 * 1000
   });
 
   res.redirect("/admin/dashboard");

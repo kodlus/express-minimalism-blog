@@ -51,11 +51,16 @@ body {
   }
 
   .active {
-    color: $baseBlack;
+    color: $baseDarkerGreen;
   }
 
   .danger {
     color: #9f0000;
+  }
+
+  .footer {
+    background-color: $baseBlack;
+    color: $baseWhite;
   }
 
   // Small screens

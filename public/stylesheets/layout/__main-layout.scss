@@ -3,6 +3,7 @@ Main layout
 ===============================================*/
 body {
   transition: background-color 0.75s ease-out;
+  position: relative;
 }
 
 .header {
@@ -12,5 +13,5 @@ body {
 
 .main {
   padding: 0 1em;
-  margin-bottom: 1em;
+  margin-bottom: 100px;
 }

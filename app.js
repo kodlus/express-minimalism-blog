@@ -2,20 +2,20 @@
 //* Modules
 ===============================================*/
 require("dotenv").config();
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const logger = require('morgan');
 
 // Cookies
-var cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
 // For updating, deleting etc. posts and users
 const methodOverride = require("method-override");
 
-
+// EJS
 const expressLayout = require("express-ejs-layouts");
 
 // For production
@@ -37,14 +37,15 @@ const mongoDB = process.env.MONGO_URI;
 main().catch((err) => console.log(err));
 async function main() {
   const connection = await mongoose.connect(mongoDB);
-  
-  console.log(`Database connected: ${connection.connection.host}`);
+
+  if(process.env.NODE_ENV === "development") {
+    console.log(`Database connected: ${connection.connection.host}`);
+  }
 }
 
 /*===============================================
 //* View engine setup
 ===============================================*/
-//app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // Default layout (note the file path, it starts
@@ -58,17 +59,19 @@ app.use(expressLayout);
 //* from the database tables
 ===============================================*/
 app.use(methodOverride("_method"));
-app.use(logger('dev'));
 
+/*===============================================
+//* Middleware for handling data passed from user
+===============================================*/
 // For passing data via e.g. forms
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 /*===============================================
-//* Middleware for updating and deleting things
-//* from the database tables
+//* Middleware for logging http requests
+//* during development
 ===============================================*/
-app.use(methodOverride("_method"));
+app.use(logger('dev'));
 
 /*===============================================
 //* Middleware for cookie handling
@@ -96,14 +99,20 @@ app.use(compression()); // Compress all routes
 /*===============================================
 //* Middleware for security
 ===============================================*/
-// Security
-/* app.use(
+app.use(helmet());
+app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      "script-src": ["'self'", "code.jquery.com", "cdn.jsdelivr.net"],
+      "script-src": [
+        "'self'", 
+        // inline scripts used for preventing stylesheet 
+        // loading issues in Firefox
+        "'sha256-X+zrZv/IbzjZUnhsbWlsecLbwjndTpG0ZynXOif7V+k='",
+        "'sha256-TdSXywXlyTYsLg1Hgoc7K0pyCMX7D/TzgIc107Ln6V0='"
+      ],
     },
   }),
-); */
+);
 
 // Set up rate limiter: maximum of twenty requests per minute
 const RateLimit = require("express-rate-limit");
@@ -112,7 +121,7 @@ const limiter = RateLimit({
   max: 20,
 });
 // Apply rate limiter to all requests
-//app.use(limiter);
+app.use(limiter);
 
 /*===============================================
 //* Giving the app access to the public folder

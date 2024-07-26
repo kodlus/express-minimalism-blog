@@ -313,6 +313,7 @@ Main layout
 ===============================================*/
 body {
   transition: background-color 0.75s ease-out;
+  position: relative;
 }
 
 .header {
@@ -322,7 +323,7 @@ body {
 
 .main {
   padding: 0 1em;
-  margin-bottom: 1em;
+  margin-bottom: 100px;
 }
 
 /*===============================================
@@ -571,6 +572,18 @@ Header
 }
 
 /*===============================================
+Footer
+===============================================*/
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 1em;
+  font-size: 12px;
+}
+
+/*===============================================
 Variables
 ===============================================*/
 body {
@@ -606,10 +619,14 @@ body .form__btn--danger:focus {
   color: #1d1d1d;
 }
 body .active {
-  color: #1d1d1d;
+  color: #264653;
 }
 body .danger {
   color: #9f0000;
+}
+body .footer {
+  background-color: #1d1d1d;
+  color: #ffffff;
 }
 @media screen and (max-width: 768px) {
   body .header input:checked ~ .header__nav {
