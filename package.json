@@ -30,7 +30,7 @@
     "sass": "^1.77.8"
   },
   "engines": {
-    "node": ">=v18"
+    "node": "18.20.4"
   },
   "devDependencies": {
     "nodemon": "^3.1.4"
