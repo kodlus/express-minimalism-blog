@@ -117,7 +117,7 @@ const limiter = RateLimit({
   max: 20,
 });
 // Apply rate limiter to all requests
-//app.use(limiter);
+app.use(limiter);
 
 /*===============================================
 //* Giving the app access to the public folder
