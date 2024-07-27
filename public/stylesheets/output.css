@@ -171,7 +171,7 @@ https://code-boxx.com/simple-responsive-pure-css-hamburger-menu/
     border-radius: 50px;
     text-align: center;
     z-index: 9;
-    bottom: 25px;
+    bottom: 40px;
     right: 25px;
   }
   .hamburger-icon:active {
@@ -675,9 +675,18 @@ Dark mode
 .dark-mode .active {
   color: #f5a816;
 }
+.dark-mode .form__btn:hover,
+.dark-mode .form__btn:focus {
+  background-color: #a9f7a9;
+  color: #11151c;
+}
 .dark-mode .form__btn--danger {
   background-color: #ff7171;
   color: #11151c;
+}
+.dark-mode .form__btn--danger:hover,
+.dark-mode .form__btn--danger:focus {
+  background-color: #f7a9a9;
 }
 .dark-mode .danger {
   color: #ff7171;

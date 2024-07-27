@@ -1,8 +1,12 @@
 <h1 class="margin-bottom center">List o' inlägg</h1>
 
+<% if (data.length <= 0) { %>
+ <p class="center">(...ljudet av syrsor ekar...)</p>
+<% } %>
+
 <div class="blog-posts-list">
   <% data?.forEach(post => { %> <!-- Tag start -->
-    <% if (post.slug) { %> <!-- If statement start -->
+    <% if (post?.slug) { %> <!-- If statement start -->
       <div class="blog-post-preview">
         <div class="blog-post-preview__header">
           <h2>

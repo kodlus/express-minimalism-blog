@@ -5,8 +5,8 @@ const Post = require("../models/Post");
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const createError = require('http-errors');
 
-const { body, validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 
 /*===============================================
@@ -28,7 +28,7 @@ exports.index = asyncHandler(async (req, res, next) => {
   }
 
   // Get the data 
-  const data = await Post.find();
+  const data = await Post.find().exec();
 
   // Sort the posts - newest first
   data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
@@ -53,7 +53,7 @@ Blog posts summary page
 ==============================*/
 exports.get_blog_post_summary = asyncHandler(async (req, res, next) => {
   // Grab the posts from the database
-  const data = await Post.find();
+  const data = await Post.find().exec();
 
   // Sort the posts - newest first
   data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
@@ -71,7 +71,7 @@ exports.get_one_blog_post = asyncHandler(async (req, res, next) => {
   // Get a slug from the url
   const slug = req.params.slug;
   // Search for a matching slug in the database
-  const data = await Post.findOne({ slug: slug });
+  const data = await Post.findOne({ slug: slug }).exec();
   // Send response to post-page.ejs
   res.render("post-page", {
     data
@@ -119,17 +119,25 @@ exports.post_login_credentials = asyncHandler(async (req, res, next) => {
   const { username, password } = req.body;
 
   // Find the username in the database
-  const user = await User.findOne({ username });
+  const user = await User.findOne({ username }).exec();
 
-  // Block access if the user is not found ("naïve way")
-  if (username !== process.env.ADMIN || user.username === null) return res.status(401).json({ message: "Invalid credentials" });
+  // Alert if the user is not found ("naïve way")
+  if (username !== process.env.ADMIN || user.username === null) {
+    res.render("login-page", {
+      message: "Wrong credentials"
+    });
+    return;
+  }
 
   // Get the user's hashed password and compare it with the "inmatade"
   const isPasswordValid = await bcrypt.compare(password, user.password);
 
   // Alert if the password is not found
   if (!isPasswordValid) {
-    return res.status(401).json({ message: "Invalid credentials" });
+    res.render("login-page", {
+      message: "Wrong credentials"
+    });
+    return;
   };
 
   // Save a jwt to a http-only cookie
@@ -146,7 +154,7 @@ exports.post_login_credentials = asyncHandler(async (req, res, next) => {
 });
 
 exports.logout_user = asyncHandler(async (req, res, next) => {
-    // Remove the jwt from the cookie. Remember, the names of the token 
+    // Remove the jwt-cookie. Remember, the names of the token 
     // must match. 
     res.clearCookie("jwt");
     res.redirect("/");

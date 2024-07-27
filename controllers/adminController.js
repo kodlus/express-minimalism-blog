@@ -21,7 +21,7 @@ Dashboard / index page
 ==============================*/
 exports.index = asyncHandler(async (req, res, next) => {
   // Get all of the posts
-  const data = await Post.find();
+  const data = await Post.find().exec();
 
   // Sort the posts - newest first
   data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
@@ -39,7 +39,7 @@ exports.get_one_admin_blog_post = asyncHandler(async (req, res, next) => {
   // Get a slug from the url
   const slug = req.params.slug;
   // Search for a matching slug in the database
-  const data = await Post.findOne({ slug: slug });
+  const data = await Post.findOne({ slug: slug }).exec();
   // Send response to post-page.ejs
   res.render("admin/view-post-page", {
     data 
@@ -63,6 +63,14 @@ exports.post_new_post = asyncHandler(async (req, res, next) => {
   const tags = req.body.tags.split(",");
   // https://stackoverflow.com/questions/9229645/remove-duplicate-values-from-js-array
   const uniqueTags = [... new Set(tags)];
+
+  const duplicate = await Post.findOne({ title: req.body.title }).exec();
+
+  // Check for duplicate slugs
+  if (duplicate) {
+    res.send("Titeln används redan")
+    return;
+  }
   
   // Create a new post
   const newPost = new Post({
@@ -87,7 +95,7 @@ exports.get_edit_post_page = asyncHandler(async (req, res, next) => {
   // Get a slug from the url
   const slug = req.params.slug;
   // Search for a matching slug in the database
-  const data = await Post.findOne({ slug: slug });
+  const data = await Post.findOne({ slug: slug }).exec();
   
   // Redirect to the page that got updated
   res.render(`admin/edit-post-page`, {
@@ -101,9 +109,8 @@ exports.edit_post = asyncHandler(async (req, res, next) => {
   const slug = req.params.slug;
 
   // Search for a matching slug in the database
-  const post = await Post.findOne({ slug: slug });
+  const post = await Post.findOne({ slug: slug }).exec();
   const id = post?._id;
-  console.log(id)
 
   // Create a new slug
   const newSlug = slugify(req.body.title);
@@ -121,7 +128,7 @@ exports.edit_post = asyncHandler(async (req, res, next) => {
     body: req.body.body,
     slug: newSlug,
     updatedAt: Date.now()
-  });
+  }).exec();
 
   // Redirect to the page that got updated
   res.redirect(`/admin/dashboard`);
@@ -132,13 +139,13 @@ exports.delete_post = asyncHandler(async (req, res, next) => {
   const slug = req.params.slug;
   
   // Search for a matching slug in the database
-  const post = await Post.findOne({ slug: slug });
+  const post = await Post.findOne({ slug: slug }).exec();
   const id = post?._id;
 
   //todo: add warning
 
   // Delete post based on its id
-  await Post.deleteOne({_id: id});
+  await Post.deleteOne({_id: id}).exec();
 
   // Redirect after deletion
   res.redirect("/admin/dashboard");
@@ -156,7 +163,7 @@ exports.register_user = asyncHandler(async (req, res, next) => {
   const { username, password } = req.body;
 
   // Try to find a duplicate
-  const duplicate = await User.findOne({ username });
+  const duplicate = await User.findOne({ username }).exec();
 
   if (duplicate) {
     return res.status(400).json({message: "Username is already taken"});
@@ -166,7 +173,7 @@ exports.register_user = asyncHandler(async (req, res, next) => {
   const hashedPassword = await bcrypt.hash(password, 10);
 
   // Create the user
-  const user = await User.create({ username, password: hashedPassword });
+  const user = await User.create({ username, password: hashedPassword }).exec();
   //res.status(201).json({ message: "User created", user});
 
   res.redirect("/login");

@@ -1,53 +1,64 @@
 <h1 class="center margin-bottom">Hem</h1>
 <section>
-  <div class="latest-blog-post">
-    <div class="latest-blog-post__header">
-      <h2>
-        <a href="/posts/<%= latestPost.slug %>">
-          <%= latestPost.title %>
-        </a>
-      </h2>
-      <span> <%= latestPost.createdAt.toLocaleDateString() %></span>
+  <h2 class="center margin-bottom">Senaste inlägget</h2>
+  <% if(latestPost){ %>
+    <div class="latest-blog-post">
+      <div class="latest-blog-post__header">
+        <h2>
+          <a href="/posts/<%= latestPost?.slug %>">
+            <%= latestPost?.title %>
+          </a>
+        </h2>
+        <span> <%= latestPost.createdAt.toLocaleDateString() %></span>
+      </div>
+  
+      <div class="latest-blog-post__body">
+        <!-- IF the post has an image, put it here -->
+         <% if (latestPost.img_url) { %>
+          <img src="<%= latestPost.img_url %>" alt="<%= latestPost.img_alt %>">
+         <% } %>
+        
+         <!-- Text body goes here -->
+        <p class="blog-post-body"> <%= latestPost?.body %> </p>
+      </div>
     </div>
+  <% } else{ %>  
+    <p class="center margin-bottom">Inget nytt under solen</p>
+ <% } %>
 
-    <div class="latest-blog-post__body">
-      <!-- IF the post has an image, put it here -->
-       <% if (latestPost.img_url) { %>
-        <img src="<%= latestPost.img_url %>" alt="<%= latestPost.img_alt %>">
-       <% } %>
-      
-       <!-- Text body goes here -->
-      <p class="blog-post-body"> <%= latestPost?.body %> </p>
-    </div>
-  </div>
+
+
 </section>
 
 <section>
   <h2 class="center margin-bottom">Tidigare inlägg:</h2>
   
   <div class="blog-posts-list">
-  <% previousPosts?.forEach(post => { %> <!-- Tag start -->
-    <% if (post.slug) { %> <!-- If statement start -->
-      <div class="blog-post-preview">
-        <div class="blog-post-preview__header">
-          <h2>
-            <a href="/posts/<%= post.slug %>"><%= post.title %></a>
-          </h2>
+    <% if(previousPosts.length > 0){ %>
+      <% previousPosts?.forEach(post => { %> <!-- Tag start -->
+        <% if (post.slug) { %> <!-- If statement start -->
+          <div class="blog-post-preview">
+            <div class="blog-post-preview__header">
+              <h2>
+                <a href="/posts/<%= post.slug %>"><%= post.title %></a>
+              </h2>
+    
+              <span> 
+                <%= post.createdAt.toLocaleDateString() %>
+              </span>
+            </div>
+            
+            <p class="blog-post-preview__body">
+              <%= post.body.substr(0, 50) %> ...(click link to read more)
+            </p>
+    
+            <button class="blog-post-preview__button"> Visa sammanfattning </button>
 
-          <span> 
-            <%= post.createdAt.toLocaleDateString() %>
-          </span>
-        </div>
-        
-        <p class="blog-post-preview__body">
-          <%= post.body.substr(0, 50) %> ...(click link to read more)
-        </p>
-
-        <button class="blog-post-preview__button"> Visa sammanfattning </button>
-
-
-        </div>
-      <% } %> <!-- If statement end -->
-    <% }); %> <!-- Tag end -->
+          </div>
+        <% } %> <!-- If statement end -->
+        <% }); %> <!-- Tag end -->
+    <% } else{ %>  
+      <p class="center"> Jag kanske borde skriva mer</p>
+    <% } %>
   </div>
 </section>

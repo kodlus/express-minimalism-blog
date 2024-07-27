@@ -20,6 +20,7 @@
     type="text" 
     placeholder="Kort beskrivning om inlägget" 
     class="form__input max-width-unset" 
+    value="<% locals?.description %>"
     required
   >
 
@@ -40,6 +41,7 @@
     class="form__body"
     required
   >
+    <% locals?.body %>
   </textarea>
 
   <input 
@@ -49,3 +51,6 @@
     class="btn"
   >
 </form>
+<% if (locals.message) { %>
+  <p class="center margin-bottom danger"><b><%= locals.message %></b></p>
+ <% } %>

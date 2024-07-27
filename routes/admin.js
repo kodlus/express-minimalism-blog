@@ -12,7 +12,6 @@ Variables
 ===============================================*/
 const jwtSecret = process.env.JWT_SECRET;
 
-// TODO: Move this to the "middleware" folder
 /*===============================================
 Authentication middleware 
 ===============================================*/

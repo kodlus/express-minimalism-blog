@@ -6,22 +6,18 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
+const mongoose = require("mongoose");
 
-// Cookies
 const cookieParser = require('cookie-parser');
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
-// For updating, deleting etc. posts and users
 const methodOverride = require("method-override");
-
-// EJS
 const expressLayout = require("express-ejs-layouts");
 
 // For production
 const compression = require("compression");
 const helmet = require("helmet");
-const mongoose = require("mongoose");
 
 /*===============================================
 //* Setting up express application
@@ -51,7 +47,6 @@ app.set('view engine', 'ejs');
 // Default layout (note the file path, it starts
 // within the views folder, not the root folder)
 app.set("layout", "./layouts/main.ejs");
-
 app.use(expressLayout);
 
 /*===============================================
@@ -86,7 +81,8 @@ app.use(
       mongoUrl: process.env.MONGO_URI
     }),
     cookie: {
-      maxAge: new Date( Date.now() + (3600000))
+      maxAge: new Date( Date.now() + (3600000)),
+      secure: false // set to true in production
     }
   })
 );
@@ -121,7 +117,7 @@ const limiter = RateLimit({
   max: 20,
 });
 // Apply rate limiter to all requests
-app.use(limiter);
+//app.use(limiter);
 
 /*===============================================
 //* Giving the app access to the public folder

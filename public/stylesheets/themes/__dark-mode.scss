@@ -8,6 +8,8 @@ $darkModeBrown: #7d4e57;
 $darkModeOrange: #f5a816; //#d66853;
 $darkModeWhite: #d6d5d5;
 $darkModeRed: #ff7171;
+$darkModeLightRed: #f7a9a9;
+$darkModeLightGreen: #a9f7a9;
 
 /*===============================================
 Dark mode
@@ -56,9 +58,19 @@ Dark mode
     color: $darkModeOrange;
   }
 
+  .form__btn:hover,
+  .form__btn:focus {
+    background-color: $darkModeLightGreen;
+    color: $darkModeDarkerBlack;
+  }
+
   .form__btn--danger {
     background-color: $darkModeRed;
     color: $darkModeDarkerBlack;
+  }
+  .form__btn--danger:hover,
+  .form__btn--danger:focus {
+    background-color: $darkModeLightRed;
   }
 
   .danger {
