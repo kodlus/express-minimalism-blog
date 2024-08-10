@@ -83,5 +83,6 @@ Blog posts preview
 }
 
 .blog-post-preview__body.expanded {
-  height: 50px;
+  height: auto;
+  overflow: scroll;
 }

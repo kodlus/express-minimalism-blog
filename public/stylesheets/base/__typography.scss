@@ -6,6 +6,13 @@ body {
 }
 
 .blog-post-body,
-.form__body {
+.form__body,
+.about-page__content {
   white-space-collapse: preserve-breaks;
+}
+
+.project,
+.blog-post-body,
+.about-page {
+  line-height: 1.6;
 }

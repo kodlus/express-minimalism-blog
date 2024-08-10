@@ -34,8 +34,15 @@ body {
 }
 
 .blog-post-body,
-.form__body {
+.form__body,
+.about-page__content {
   white-space-collapse: preserve-breaks;
+}
+
+.project,
+.blog-post-body,
+.about-page {
+  line-height: 1.6;
 }
 
 /*===============================================
@@ -305,7 +312,8 @@ Blog posts preview
 }
 
 .blog-post-preview__body.expanded {
-  height: 50px;
+  height: auto;
+  overflow: scroll;
 }
 
 /*===============================================
@@ -581,6 +589,12 @@ Footer
   text-align: center;
   padding: 1em;
   font-size: 12px;
+}
+
+.pagination {
+  margin: 0 auto;
+  display: flex;
+  gap: 10px;
 }
 
 /*===============================================

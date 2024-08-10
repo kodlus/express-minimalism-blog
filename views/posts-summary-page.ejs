@@ -28,4 +28,22 @@
       </div>
     <% } %> <!-- If statement end -->
   <% }); %> <!-- Tag end -->
+  
+  <!-- Pagination -->
+   <div class="pagination">
+
+    <% if (totalPages !== null) { %>
+      <%# Will create pages for pagination %>
+      <% for( let index = 0; index < totalPages; index++ ) { %>
+          <a 
+            href="/posts?page=<%= index + 1 %>" 
+            class="link-reset <% if (index + 1 === page) { %>
+              active
+            <% } %>"
+          >
+            <%= index + 1 %>
+          </a>
+      <% } %>
+    <% } %>
+   </div>
 </div>

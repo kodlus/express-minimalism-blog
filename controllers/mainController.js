@@ -51,7 +51,7 @@ exports.index = asyncHandler(async (req, res, next) => {
 /*==============================
 Blog posts summary page
 ==============================*/
-exports.get_blog_post_summary = asyncHandler(async (req, res, next) => {
+/* exports.get_blog_post_summary = asyncHandler(async (req, res, next) => {
   // Grab the posts from the database
   const data = await Post.find().exec();
 
@@ -61,6 +61,27 @@ exports.get_blog_post_summary = asyncHandler(async (req, res, next) => {
   // Send response to server/views/posts-summary-page.ejs
   res.render("posts-summary-page", {
     data
+  });
+}); */
+
+exports.get_blog_post_summary = asyncHandler(async (req, res, next) => {
+  const page = parseInt(req.query.page, 3) || 1;
+  const limit = parseInt(req.query.limit, 3) || 3;
+  const offset = (page - 1) * limit;
+
+  // Grab the posts from the database, in descending order
+  const data = await Post.find().skip(offset).limit(limit).sort({$natural:-1}).exec();
+
+  
+  const totalItems = await Post.countDocuments({});
+  const totalPages = Math.ceil(totalItems / limit);
+
+  // Send response to server/views/posts-summary-page.ejs
+  res.render("posts-summary-page", {
+    data,
+    page,
+    totalPages,
+    totalItems
   });
 });
 
