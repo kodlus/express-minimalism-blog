@@ -27,14 +27,20 @@ exports.index = asyncHandler(async (req, res, next) => {
     desc: "A simple blog created with NodeJS, Express, and MongoDB",
   }
 
-  // Get the data 
-  const data = await Post.find().exec();
+  // Pagination: https://dev.to/michaelikoko/server-side-pagination-with-expressjs-and-mongodb-3g5i 
+  const page = parseInt(req.query.page, 3) || 1;
+  const limit = parseInt(req.query.limit, 3) || 3;
+  const offset = (page - 1) * limit;
 
-  // Sort the posts - newest first
-  data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  // Grab the posts from the database, in descending order
+  const data = await Post.find().skip(offset).limit(limit).sort({$natural:-1})
+    .exec();
+
+  const totalItems = await Post.countDocuments({});
+  const totalPages = Math.ceil(totalItems / limit);
 
   // Get the latest post
-  const latestPost = data[0]
+  const latestPost = await Post.find().limit(1).sort({$natural:-1}).exec();
 
   // And the rest
   const previousPosts = Array.from(data).slice(1);
@@ -42,6 +48,9 @@ exports.index = asyncHandler(async (req, res, next) => {
   // Send response to server/views/index.ejs
   res.render("index-page", {
     data,
+    page,
+    totalPages,
+    totalItems,
     latestPost,
     previousPosts,
     locals
@@ -51,28 +60,16 @@ exports.index = asyncHandler(async (req, res, next) => {
 /*==============================
 Blog posts summary page
 ==============================*/
-/* exports.get_blog_post_summary = asyncHandler(async (req, res, next) => {
-  // Grab the posts from the database
-  const data = await Post.find().exec();
-
-  // Sort the posts - newest first
-  data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-
-  // Send response to server/views/posts-summary-page.ejs
-  res.render("posts-summary-page", {
-    data
-  });
-}); */
-
-exports.get_blog_post_summary = asyncHandler(async (req, res, next) => {
+exports.get_blog_posts_summaries = asyncHandler(async (req, res, next) => {
+  // Pagination: https://dev.to/michaelikoko/server-side-pagination-with-expressjs-and-mongodb-3g5i 
   const page = parseInt(req.query.page, 3) || 1;
   const limit = parseInt(req.query.limit, 3) || 3;
   const offset = (page - 1) * limit;
 
   // Grab the posts from the database, in descending order
-  const data = await Post.find().skip(offset).limit(limit).sort({$natural:-1}).exec();
+  const data = await Post.find().skip(offset).limit(limit).sort({$natural:-1})
+    .exec();
 
-  
   const totalItems = await Post.countDocuments({});
   const totalPages = Math.ceil(totalItems / limit);
 

@@ -21,7 +21,7 @@ router.get("/", mainController.index);
 /*==============================
 Blog posts summary page
 ==============================*/
-router.get("/posts", mainController.get_blog_post_summary);
+router.get("/posts", mainController.get_blog_posts_summaries);
 
 /*==============================
 Single blog post page

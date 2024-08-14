@@ -6,28 +6,25 @@
       <div class="latest-blog-post__header">
         <h2>
           <a href="/posts/<%= latestPost?.slug %>">
-            <%= latestPost?.title %>
+            <%= latestPost[0]?.title %>
           </a>
         </h2>
-        <span> <%= latestPost.createdAt.toLocaleDateString() %></span>
+        <span> <%= latestPost[0].createdAt.toLocaleDateString() %></span>
       </div>
   
       <div class="latest-blog-post__body">
         <!-- IF the post has an image, put it here -->
-         <% if (latestPost.img_url) { %>
-          <img src="<%= latestPost.img_url %>" alt="<%= latestPost.img_alt %>">
+         <% if (latestPost[0].img_url) { %>
+          <img src="<%= latestPost[0].img_url %>" alt="<%= latestPost[0].img_alt %>">
          <% } %>
         
          <!-- Text body goes here -->
-        <p class="blog-post-body"> <%= latestPost?.body %> </p>
+        <p class="blog-post-body"> <%= latestPost[0]?.body %> </p>
       </div>
     </div>
   <% } else{ %>  
     <p class="center margin-bottom">Inget nytt under solen</p>
  <% } %>
-
-
-
 </section>
 
 <section>
@@ -57,6 +54,24 @@
           </div>
         <% } %> <!-- If statement end -->
         <% }); %> <!-- Tag end -->
+  <!-- Pagination -->
+   
+  <!-- TODO: turn into a partial -->
+   <div class="pagination">
+    <% if (totalPages !== null) { %>
+      <%# Will create pages for pagination %>
+      <% for( let index = 0; index < totalPages; index++ ) { %>
+          <a 
+            href="/?page=<%= index + 1 %>" 
+            class="link-reset <% if (index + 1 === page) { %>
+              active
+            <% } %>"
+          >
+            <%= index + 1 %>
+          </a>
+      <% } %>
+    <% } %>
+   </div>
     <% } else{ %>  
       <p class="center"> Jag kanske borde skriva mer</p>
     <% } %>
